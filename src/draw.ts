@@ -85,7 +85,8 @@ export const GanttChart = function (pDiv, pFormat) {
     beforeLineDraw: null,
     afterLineDraw: null,
     onLineDraw: null,
-    onLineContainerHover: null
+    onLineContainerMouseIn: null,
+    onLineContainerMouseOut: null
   };
   this.vEventsChange = {
     taskname: null,
@@ -771,9 +772,12 @@ export const GanttChart = function (pDiv, pFormat) {
 
       newNode(vTmpDiv, 'div', null, 'ggridfooter');
       vTmpDiv2 = newNode(this.getChartBody(), 'div', this.vDivId + 'Lines', 'glinediv');
-      if (this.vEvents.onLineContainerHover && typeof this.vEvents.onLineContainerHover === 'function') {
-        addListener('mouseover', this.vEvents.onLineContainerHover, vTmpDiv2);
+      if (this.vEvents.onLineContainerMouseIn && typeof this.vEvents.onLineContainerMouseIn === 'function') {
+        addListener('mouseover', this.vEvents.onLineContainerMouseIn, vTmpDiv2);
         addListener('mouseout', this.vEvents.onLineContainerHover, vTmpDiv2);
+      }
+      if (this.vEvents.onLineContainerMouseOut && typeof this.vEvents.onLineContainerMouseOut === 'function') {
+        addListener('mouseover', this.vEvents.onLineContainerMouseOut, vTmpDiv2);
       }
       vTmpDiv2.style.visibility = 'hidden';
       this.setLines(vTmpDiv2);
