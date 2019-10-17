@@ -351,7 +351,7 @@ export const addListenerDependencies = function () {
 const toggleDependencies = function (e) {
   const target: any = e.currentTarget;
   const ids = target.getAttribute('id').split('_');
-  let style = 'groove';
+  let style = ''; // bitflower: revert after presentation
   if (e.type === 'mouseout') {
     style = '';
   }
