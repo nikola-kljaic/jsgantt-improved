@@ -332,7 +332,7 @@ exports.addListenerDependencies = function () {
 var toggleDependencies = function (e) {
     var target = e.currentTarget;
     var ids = target.getAttribute('id').split('_');
-    var style = 'groove';
+    var style = ''; // bitflower: revert after presentatiobn
     if (e.type === 'mouseout') {
         style = '';
     }
