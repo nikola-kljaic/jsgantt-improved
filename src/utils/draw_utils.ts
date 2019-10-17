@@ -95,6 +95,7 @@ export const CalcTaskXY = function () {
 };
 
 export const sLine = function (x1, y1, x2, y2, pClass) {
+  const lineWidth: number = 5; // bitflower: todo => get from options
   let vLeft = Math.min(x1, x2);
   let vTop = Math.min(y1, y2);
   let vWid = Math.abs(x2 - x1) + 1;
@@ -107,7 +108,7 @@ export const sLine = function (x1, y1, x2, y2, pClass) {
   vTmpDiv.style.zIndex = '0';
   vTmpDiv.style.left = vLeft + 'px';
   vTmpDiv.style.top = vTop + 'px';
-  vTmpDiv.style.width = vWid + 'px';
+  vTmpDiv.style.width = vWid + (lineWidth - 1) 'px';
   vTmpDiv.style.height = vHgt + 'px';
 
   vTmpDiv.style.visibility = 'visible';
