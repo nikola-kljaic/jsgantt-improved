@@ -109,6 +109,7 @@ exports.CalcTaskXY = function () {
     }
 };
 exports.sLine = function (x1, y1, x2, y2, pClass) {
+    var lineWidth = 5; // bitflower: todo => pull from options
     var vLeft = Math.min(x1, x2);
     var vTop = Math.min(y1, y2);
     var vWid = Math.abs(x2 - x1) + 1;
@@ -120,7 +121,7 @@ exports.sLine = function (x1, y1, x2, y2, pClass) {
     vTmpDiv.style.zIndex = '0';
     vTmpDiv.style.left = vLeft + 'px';
     vTmpDiv.style.top = vTop + 'px';
-    vTmpDiv.style.width = vWid + 'px';
+    vTmpDiv.style.width = vWid + (lineWidth - 1) 'px';
     vTmpDiv.style.height = vHgt + 'px';
     vTmpDiv.style.visibility = 'visible';
     if (vWid == 1)
