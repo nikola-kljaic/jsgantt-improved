@@ -93,6 +93,7 @@ exports.includeGetSet = function () {
     this.setWorkingDays = function (workingDays) { this.vWorkingDays = workingDays; };
     this.setMinGpLen = function (pMinGpLen) { this.vMinGpLen = pMinGpLen; };
     this.setScrollTo = function (pDate) { this.vScrollTo = pDate; };
+    this.setWidthModifier = function (pWidth) { this.vWidthModifier = pWidth; };
     this.setHourColWidth = function (pWidth) { this.vHourColWidth = pWidth; };
     this.setDayColWidth = function (pWidth) { this.vDayColWidth = pWidth; };
     this.setWeekColWidth = function (pWidth) { this.vWeekColWidth = pWidth; };
@@ -179,6 +180,7 @@ exports.includeGetSet = function () {
     this.getCaptionType = function () { return this.vCaptionType; };
     this.getMinGpLen = function () { return this.vMinGpLen; };
     this.getScrollTo = function () { return this.vScrollTo; };
+    this.getWidthModifier = function () { return this.vWidthModifier; };
     this.getHourColWidth = function () { return this.vHourColWidth; };
     this.getDayColWidth = function () { return this.vDayColWidth; };
     this.getWeekColWidth = function () { return this.vWeekColWidth; };
