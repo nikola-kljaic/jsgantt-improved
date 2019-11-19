@@ -23,7 +23,7 @@ export const includeGetSet = function () {
         this['set' + key.substr(1)](val);
       }
     }
-  }
+  };
   this.setUseFade = function (pVal) { this.vUseFade = pVal; };
   this.setUseMove = function (pVal) { this.vUseMove = pVal; };
   this.setUseRowHlt = function (pVal) { this.vUseRowHlt = pVal; };
@@ -32,7 +32,7 @@ export const includeGetSet = function () {
   this.setUseSingleCell = function (pVal) { this.vUseSingleCell = pVal * 1; };
   this.setFormatArr = function () {
     let vValidFormats = 'hour day week month quarter';
-    this.vFormatArr = new Array();
+    this.vFormatArr = [];
     for (let i = 0, j = 0; i < arguments.length; i++) {
       if (vValidFormats.indexOf(arguments[i].toLowerCase()) != -1 && arguments[i].length > 1) {
         this.vFormatArr[j++] = arguments[i].toLowerCase();
@@ -61,7 +61,7 @@ export const includeGetSet = function () {
   this.setShowWeekends = function (pVal) { this.vShowWeekends = pVal; };
   this.setShowSelector = function () {
     let vValidSelectors = 'top bottom';
-    this.vShowSelector = new Array();
+    this.vShowSelector = [];
     for (let i = 0, j = 0; i < arguments.length; i++) {
       if (vValidSelectors.indexOf(arguments[i].toLowerCase()) != -1 && arguments[i].length > 1) {
         this.vShowSelector[j++] = arguments[i].toLowerCase();
@@ -111,7 +111,7 @@ export const includeGetSet = function () {
   this.setMaxDate = function (pVal) { this.vMaxDate = pVal; };
   this.addLang = function (pLang, pVals) {
     if (!this.vLangs[pLang]) {
-      this.vLangs[pLang] = new Object();
+      this.vLangs[pLang] = {};
       for (let vKey in this.vLangs['en']) this.vLangs[pLang][vKey] = (pVals[vKey]) ? document.createTextNode(pVals[vKey]).data : this.vLangs['en'][vKey];
     }
   };
