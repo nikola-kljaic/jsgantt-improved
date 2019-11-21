@@ -372,13 +372,12 @@ exports.getScrollbarWidth = function () {
     outer.parentNode.removeChild(outer);
     return scrollbarWidth;
 };
-exports.getOffset = function (pStartDate, pEndDate, pColWidth, pFormat, pShowWeekends, pWidthModifier) {
+exports.getOffset = function (pStartDate, pEndDate, pColWidth, pFormat, pShowWeekends) {
     var DAY_CELL_MARGIN_WIDTH = 3; // Cell margin for 'day' format
     var WEEK_CELL_MARGIN_WIDTH = 3; // Cell margin for 'week' format
     var MONTH_CELL_MARGIN_WIDTH = 3; // Cell margin for 'month' format
     var QUARTER_CELL_MARGIN_WIDTH = 3; // Cell margin for 'quarter' format
     var HOUR_CELL_MARGIN_WIDTH = 3; // Cell margin for 'hour' format
-    var WIDTH_MODIFIER = pWidthModifier || 0;
     var vMonthDaysArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     var curTaskStart = new Date(pStartDate.getTime());
     var curTaskEnd = new Date(pEndDate.getTime());
@@ -402,31 +401,31 @@ exports.getOffset = function (pStartDate, pEndDate, pColWidth, pFormat, pShowWee
             }
             vTaskRight -= countWeekends * 24;
         }
-        vTaskRightPx = Math.ceil((vTaskRight / 24) * (pColWidth + DAY_CELL_MARGIN_WIDTH + WIDTH_MODIFIER) - 1);
+        vTaskRightPx = Math.ceil((vTaskRight / 24) * (pColWidth + DAY_CELL_MARGIN_WIDTH) - 1);
     }
     else if (pFormat == 'week') {
-        vTaskRightPx = Math.ceil((vTaskRight / (24 * 7)) * (pColWidth + WEEK_CELL_MARGIN_WIDTH + WIDTH_MODIFIER) - 1);
+        vTaskRightPx = Math.ceil((vTaskRight / (24 * 7)) * (pColWidth + WEEK_CELL_MARGIN_WIDTH) - 1);
     }
     else if (pFormat == 'month') {
         var vMonthsDiff = (12 * (curTaskEnd.getFullYear() - curTaskStart.getFullYear())) + (curTaskEnd.getMonth() - curTaskStart.getMonth());
         vPosTmpDate = new Date(curTaskEnd.getTime());
         vPosTmpDate.setDate(curTaskStart.getDate());
         var vDaysCrctn = (curTaskEnd.getTime() - vPosTmpDate.getTime()) / (86400000);
-        vTaskRightPx = Math.ceil((vMonthsDiff * (pColWidth + MONTH_CELL_MARGIN_WIDTH + WIDTH_MODIFIER)) + (vDaysCrctn * (pColWidth / vMonthDaysArr[curTaskEnd.getMonth()])) - 1);
+        vTaskRightPx = Math.ceil((vMonthsDiff * (pColWidth + MONTH_CELL_MARGIN_WIDTH)) + (vDaysCrctn * (pColWidth / vMonthDaysArr[curTaskEnd.getMonth()])) - 1);
     }
     else if (pFormat == 'quarter') {
         var vMonthsDiff = (12 * (curTaskEnd.getFullYear() - curTaskStart.getFullYear())) + (curTaskEnd.getMonth() - curTaskStart.getMonth());
         vPosTmpDate = new Date(curTaskEnd.getTime());
         vPosTmpDate.setDate(curTaskStart.getDate());
         var vDaysCrctn = (curTaskEnd.getTime() - vPosTmpDate.getTime()) / (86400000);
-        vTaskRightPx = Math.ceil((vMonthsDiff * ((pColWidth + QUARTER_CELL_MARGIN_WIDTH + WIDTH_MODIFIER) / 3)) + (vDaysCrctn * (pColWidth / 90)) - 1);
+        vTaskRightPx = Math.ceil((vMonthsDiff * ((pColWidth + QUARTER_CELL_MARGIN_WIDTH) / 3)) + (vDaysCrctn * (pColWidth / 90)) - 1);
     }
     else if (pFormat == 'hour') {
         // can't just calculate sum because of daylight savings changes
         vPosTmpDate = new Date(curTaskEnd.getTime());
         vPosTmpDate.setMinutes(curTaskStart.getMinutes(), 0);
         var vMinsCrctn = (curTaskEnd.getTime() - vPosTmpDate.getTime()) / (3600000);
-        vTaskRightPx = Math.ceil((vTaskRight * (pColWidth + HOUR_CELL_MARGIN_WIDTH + WIDTH_MODIFIER)) + (vMinsCrctn * (pColWidth)));
+        vTaskRightPx = Math.ceil((vTaskRight * (pColWidth + HOUR_CELL_MARGIN_WIDTH)) + (vMinsCrctn * (pColWidth)));
     }
     return vTaskRightPx;
 };
