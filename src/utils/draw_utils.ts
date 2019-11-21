@@ -108,7 +108,7 @@ export const sLine = function (x1, y1, x2, y2, pClass) {
   vTmpDiv.style.zIndex = '0';
   vTmpDiv.style.left = vLeft + 'px';
   vTmpDiv.style.top = vTop + 'px';
-  vTmpDiv.style.width = vWid + (lineWidth - 1) + 'px';
+  vTmpDiv.style.width = vWid + (lineWidth - 1) 'px';
   vTmpDiv.style.height = vHgt + 'px';
 
   vTmpDiv.style.visibility = 'visible';
