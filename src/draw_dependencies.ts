@@ -1,4 +1,4 @@
-export const drawDependency = function (x1, y1, x2, y2, pType, pClass) {
+export const drawDependency = function (x1, y1, x2, y2, pType, pClass, offset: number) {
   let vDir = 1;
   let vBend = false;
   let vShort = 4;
@@ -25,26 +25,28 @@ export const drawDependency = function (x1, y1, x2, y2, pType, pClass) {
       break;
   }
 
+  const y1WithOffset = y1 + offset;
+  const y2WithOffset = y2 + offset;
   if (vBend) {
-    this.sLine(x1, y1, x1 + vShort, y1, pClass);
-    this.sLine(x1 + vShort, y1, x1 + vShort, y2 - vRow, pClass);
-    this.sLine(x1 + vShort, y2 - vRow, x2 - (vShort * 2), y2 - vRow, pClass);
-    this.sLine(x2 - (vShort * 2), y2 - vRow, x2 - (vShort * 2), y2, pClass);
-    this.sLine(x2 - (vShort * 2), y2, x2 - (1 * vDir), y2, pClass);
+    this.sLine(x1, y1WithOffset, x1 + vShort, y1WithOffset, pClass);
+    this.sLine(x1 + vShort, y1WithOffset, x1 + vShort, y2WithOffset - vRow, pClass);
+    this.sLine(x1 + vShort, y2WithOffset - vRow, x2 - (vShort * 2), y2WithOffset - vRow, pClass);
+    this.sLine(x2 - (vShort * 2), y2WithOffset - vRow, x2 - (vShort * 2), y2WithOffset, pClass);
+    this.sLine(x2 - (vShort * 2), y2WithOffset, x2 - (1 * vDir), y2WithOffset, pClass);
   }
   else if (y1 != y2) {
-    this.sLine(x1, y1, x1 + vShort, y1, pClass);
-    this.sLine(x1 + vShort, y1, x1 + vShort, y2, pClass);
-    this.sLine(x1 + vShort, y2, x2 - (1 * vDir), y2, pClass);
+    this.sLine(x1, y1WithOffset, x1 + vShort, y1WithOffset, pClass);
+    this.sLine(x1 + vShort, y1WithOffset, x1 + vShort, y2WithOffset, pClass);
+    this.sLine(x1 + vShort, y2WithOffset, x2 - (1 * vDir), y2WithOffset, pClass);
   }
-  else this.sLine(x1, y1, x2 - (1 * vDir), y2, pClass);
+  else this.sLine(x1, y1WithOffset, x2 - (1 * vDir), y2WithOffset, pClass);
 
   let vTmpDiv = this.sLine(x2, y2, x2 - 3 - ((vDir < 0) ? 1 : 0), y2 - 3 - ((vDir < 0) ? 1 : 0), pClass + "Arw");
   vTmpDiv.style.width = '0px';
   vTmpDiv.style.height = '0px';
 };
 
-export const DrawDependencies = function (vDebug = false) {
+export const DrawDependencies = function (vDebug = false, offset: number) {
   if (this.getShowDeps() == 1) {
 
     this.CalcTaskXY(); //First recalculate the x,y
@@ -73,10 +75,10 @@ export const DrawDependencies = function (vDebug = false) {
                 cssClass += ' gDepDataId' + dependedData.pID + ' ' + 'gDepNextDataId' + nextDependedData.pID;
               }
 
-              if (vDependType[k] == 'SS') this.drawDependency(vList[vTask].getStartX() - 1, vList[vTask].getStartY(), vList[i].getStartX() - 1, vList[i].getStartY(), 'SS', cssClass + ' gDepSS');
-              else if (vDependType[k] == 'FF') this.drawDependency(vList[vTask].getEndX(), vList[vTask].getEndY(), vList[i].getEndX(), vList[i].getEndY(), 'FF', cssClass + ' gDepFF');
-              else if (vDependType[k] == 'SF') this.drawDependency(vList[vTask].getStartX() - 1, vList[vTask].getStartY(), vList[i].getEndX(), vList[i].getEndY(), 'SF', cssClass + ' gDepSF');
-              else if (vDependType[k] == 'FS') this.drawDependency(vList[vTask].getEndX(), vList[vTask].getEndY(), vList[i].getStartX() - 1, vList[i].getStartY(), 'FS', cssClass + ' gDepFS');
+              if (vDependType[k] == 'SS') this.drawDependency(vList[vTask].getStartX() - 1, vList[vTask].getStartY(), vList[i].getStartX() - 1, vList[i].getStartY(), 'SS', cssClass + ' gDepSS', offset);
+              else if (vDependType[k] == 'FF') this.drawDependency(vList[vTask].getEndX(), vList[vTask].getEndY(), vList[i].getEndX(), vList[i].getEndY(), 'FF', cssClass + ' gDepFF', offset);
+              else if (vDependType[k] == 'SF') this.drawDependency(vList[vTask].getStartX() - 1, vList[vTask].getStartY(), vList[i].getEndX(), vList[i].getEndY(), 'SF', cssClass + ' gDepSF', offset);
+              else if (vDependType[k] == 'FS') this.drawDependency(vList[vTask].getEndX(), vList[vTask].getEndY(), vList[i].getStartX() - 1, vList[i].getStartY(), 'FS', cssClass + ' gDepFS', offset);
             }
           }
         }

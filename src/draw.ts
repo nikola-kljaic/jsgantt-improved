@@ -187,7 +187,7 @@ export const GanttChart = function (pDiv, pFormat) {
     this.vDepId = 1;
   };
 
-  this.Draw = function () {
+  this.Draw = function (offset: number) {
     if (this.vEvents && this.vEvents.beforeDraw) {
       this.vEvents.beforeDraw();
     }
@@ -828,7 +828,7 @@ export const GanttChart = function (pDiv, pFormat) {
       if (this.vEvents && typeof this.vEvents.beforeLineDraw === 'function') {
         this.vEvents.beforeLineDraw();
       }
-      this.DrawDependencies(this.vDebug);
+      this.DrawDependencies(this.vDebug, offset);
       addListenerDependencies();
       if (this.vEvents && typeof this.vEvents.afterLineDraw === 'function') {
         this.vEvents.afterLineDraw();
