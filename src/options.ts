@@ -123,8 +123,9 @@ export const includeGetSet = function () {
   this.setAdditionalHeaders = function (headers) { this.vAdditionalHeaders = headers; };
   this.setColumnOrder = function (order) { this.vColumnOrder = order; };
   
-  this.setEditable = function (editable) { this.vEditable = editable; }
-  this.setDebug = function (debug) { this.vDebug = debug; }
+  this.setEditable = function (editable) { this.vEditable = editable; };
+  this.setDebug = function (debug) { this.vDebug = debug; };
+  this.setOffset = function(offset: number) {this.vOffset = offset};
   /**
    * GETTERS
    */

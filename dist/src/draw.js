@@ -83,6 +83,7 @@ exports.GanttChart = function (pDiv, pFormat) {
         cost: null,
         line: null
     };
+    this.vOffset = 0;
     this.vResources = null;
     this.vAdditionalHeaders = {};
     this.vColumnOrder = draw_columns_1.COLUMN_ORDER;
@@ -161,7 +162,7 @@ exports.GanttChart = function (pDiv, pFormat) {
             parent.removeChild(parent.firstChild);
         this.vDepId = 1;
     };
-    this.Draw = function (offset) {
+    this.Draw = function () {
         var _this = this;
         if (this.vEvents && this.vEvents.beforeDraw) {
             this.vEvents.beforeDraw();
@@ -751,7 +752,7 @@ exports.GanttChart = function (pDiv, pFormat) {
             if (this.vEvents && typeof this.vEvents.beforeLineDraw === 'function') {
                 this.vEvents.beforeLineDraw();
             }
-            this.DrawDependencies(this.vDebug, offset);
+            this.DrawDependencies(this.vDebug, this.vOffset);
             events_1.addListenerDependencies();
             if (this.vEvents && typeof this.vEvents.afterLineDraw === 'function') {
                 this.vEvents.afterLineDraw();

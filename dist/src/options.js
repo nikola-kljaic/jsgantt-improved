@@ -132,6 +132,7 @@ exports.includeGetSet = function () {
     this.setColumnOrder = function (order) { this.vColumnOrder = order; };
     this.setEditable = function (editable) { this.vEditable = editable; };
     this.setDebug = function (debug) { this.vDebug = debug; };
+    this.setOffset = function (offset) { this.vOffset = offset; };
     /**
      * GETTERS
      */

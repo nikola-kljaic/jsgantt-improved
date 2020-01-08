@@ -100,6 +100,7 @@ export const GanttChart = function (pDiv, pFormat) {
     cost: null,
     line: null
   };
+  this.vOffset = 0;
   this.vResources = null;
   this.vAdditionalHeaders = {};
   this.vColumnOrder = COLUMN_ORDER;
@@ -187,7 +188,7 @@ export const GanttChart = function (pDiv, pFormat) {
     this.vDepId = 1;
   };
 
-  this.Draw = function (offset: number) {
+  this.Draw = function () {
     if (this.vEvents && this.vEvents.beforeDraw) {
       this.vEvents.beforeDraw();
     }
@@ -828,7 +829,7 @@ export const GanttChart = function (pDiv, pFormat) {
       if (this.vEvents && typeof this.vEvents.beforeLineDraw === 'function') {
         this.vEvents.beforeLineDraw();
       }
-      this.DrawDependencies(this.vDebug, offset);
+      this.DrawDependencies(this.vDebug, this.vOffset);
       addListenerDependencies();
       if (this.vEvents && typeof this.vEvents.afterLineDraw === 'function') {
         this.vEvents.afterLineDraw();
