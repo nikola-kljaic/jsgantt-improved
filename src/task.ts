@@ -583,18 +583,6 @@ export const processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, 
   }
 
   if (pRow >= 0) {
-    // let vGroupMin: Date;
-    // if (pList[pRow].getGroupMinStart() != null) {
-    //   if (vMinDate &&  pList[pRow].getGroupMinStart() < vMinDate) {
-    //     vMinDate =  pList[pRow].getGroupMinStart();
-    //   }
-    //   else {
-    //     vMinDate = new Date();
-    //   }
-    //   vMinDate = pList[pRow].getGroupMinStart();
-    // }
-
-    // Original 
     if (pList[pRow].getGroupMinStart() != null && pList[pRow].getGroupMinStart() < vMinDate) {
       vMinDate = pList[pRow].getGroupMinStart();
     }
