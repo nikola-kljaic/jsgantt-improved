@@ -623,7 +623,7 @@ exports.processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, vDebu
             if (pList[i].getGroup()) {
                 if (pList[i].getParItem() && pList[i].getParItem().getGroup() == 2)
                     pList[i].setGroup(2);
-                exports.processRows(vList, pList[i].getID(), i, vLevel + 1, vVisible, 0);
+                exports.processRows(vList, pList[i].getID(), i, vLevel + 1, vVisible, 0, vDebug, vMinDate);
             }
             if (vMinSet == 0 || pList[i].getStart() < vMinDate) {
                 vMinDate = pList[i].getStart();
