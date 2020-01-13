@@ -522,8 +522,8 @@ export const ClearTasks = function () {
 
 
 // Recursively process task tree ... set min, max dates of parent tasks and identfy task level.
-export const processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, vDebug = false) {
-  let vMinDate = new Date();
+export const processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, vDebug = false, vMinDateOptions: Date = new Date()) {
+  let vMinDate = vMinDateOptions || new Date();
   let vMaxDate = new Date();
   let vVisible = pOpen;
   let vCurItem = null;
@@ -583,6 +583,18 @@ export const processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, 
   }
 
   if (pRow >= 0) {
+    // let vGroupMin: Date;
+    // if (pList[pRow].getGroupMinStart() != null) {
+    //   if (vMinDate &&  pList[pRow].getGroupMinStart() < vMinDate) {
+    //     vMinDate =  pList[pRow].getGroupMinStart();
+    //   }
+    //   else {
+    //     vMinDate = new Date();
+    //   }
+    //   vMinDate = pList[pRow].getGroupMinStart();
+    // }
+
+    // Original 
     if (pList[pRow].getGroupMinStart() != null && pList[pRow].getGroupMinStart() < vMinDate) {
       vMinDate = pList[pRow].getGroupMinStart();
     }

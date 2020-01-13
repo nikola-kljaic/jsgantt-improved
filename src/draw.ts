@@ -215,7 +215,7 @@ export const GanttChart = function (pDiv, pFormat) {
     }
     if (this.vTaskList.length > 0) {
       // Process all tasks, reset parent date and completion % if task list has altered
-      if (this.vProcessNeeded) processRows(this.vTaskList, 0, -1, 1, 1, this.getUseSort(), this.vDebug);
+      if (this.vProcessNeeded) processRows(this.vTaskList, 0, -1, 1, 1, this.getUseSort(), this.vDebug, this.getMinDate());
       this.vProcessNeeded = false;
 
       // get overall min/max dates plus padding

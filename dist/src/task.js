@@ -583,9 +583,10 @@ exports.ClearTasks = function () {
     this.vProcessNeeded = true;
 };
 // Recursively process task tree ... set min, max dates of parent tasks and identfy task level.
-exports.processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, vDebug) {
+exports.processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, vDebug, vMinDateOptions) {
     if (vDebug === void 0) { vDebug = false; }
-    var vMinDate = new Date();
+    if (vMinDateOptions === void 0) { vMinDateOptions = new Date(); }
+    var vMinDate = vMinDateOptions || new Date();
     var vMaxDate = new Date();
     var vVisible = pOpen;
     var vCurItem = null;
@@ -639,6 +640,17 @@ exports.processRows = function (pList, pID, pRow, pLevel, pOpen, pUseSort, vDebu
         }
     }
     if (pRow >= 0) {
+        // let vGroupMin: Date;
+        // if (pList[pRow].getGroupMinStart() != null) {
+        //   if (vMinDate &&  pList[pRow].getGroupMinStart() < vMinDate) {
+        //     vMinDate =  pList[pRow].getGroupMinStart();
+        //   }
+        //   else {
+        //     vMinDate = new Date();
+        //   }
+        //   vMinDate = pList[pRow].getGroupMinStart();
+        // }
+        // Original 
         if (pList[pRow].getGroupMinStart() != null && pList[pRow].getGroupMinStart() < vMinDate) {
             vMinDate = pList[pRow].getGroupMinStart();
         }

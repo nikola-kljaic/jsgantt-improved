@@ -189,7 +189,7 @@ exports.GanttChart = function (pDiv, pFormat) {
         if (this.vTaskList.length > 0) {
             // Process all tasks, reset parent date and completion % if task list has altered
             if (this.vProcessNeeded)
-                task_1.processRows(this.vTaskList, 0, -1, 1, 1, this.getUseSort(), this.vDebug);
+                task_1.processRows(this.vTaskList, 0, -1, 1, 1, this.getUseSort(), this.vDebug, this.getMinDate());
             this.vProcessNeeded = false;
             // get overall min/max dates plus padding
             vMinDate = date_utils_1.getMinDate(this.vTaskList, this.vFormat, this.getMinDate() && date_utils_1.coerceDate(this.getMinDate()));
